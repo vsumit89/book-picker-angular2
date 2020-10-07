@@ -1,0 +1,179 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$firebase-test-primary: mat-palette($mat-indigo);
+$firebase-test-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$firebase-test-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$firebase-test-theme: mat-light-theme((
+  color: (
+    primary: $firebase-test-primary,
+    accent: $firebase-test-accent,
+    warn: $firebase-test-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($firebase-test-theme);
+
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$custom: (
+  50 : #ecebfc,
+  100 : #d0cdf7,
+  200 : #b0acf2,
+  300 : #908bed,
+  400 : #7972e9,
+  500 : #6159e5,
+  600 : #5951e2,
+  700 : #4f48de,
+  800 : #453eda,
+  900 : #332ed3,
+  A100 : #ffffff,
+  A200 : #e3e2ff,
+  A400 : #b1afff,
+  A700 : #9996ff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+$md-custom2: (
+    50 : #fbfaf7,
+    100 : #f5f3eb,
+    200 : #eeecde,
+    300 : #e7e4d1,
+    400 : #e2dec7,
+    500 : #ddd8bd,
+    600 : #d9d4b7,
+    700 : #d4ceae,
+    800 : #cfc8a6,
+    900 : #c7bf98,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #fffbe6,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);$md-custom3: (
+  50 : #fdfdfd,
+  100 : #fbfbfb,
+  200 : #f9f9f9,
+  300 : #f6f6f6,
+  400 : #f4f4f4,
+  500 : #f2f2f2,
+  600 : #f0f0f0,
+  700 : #eeeeee,
+  800 : #ececec,
+  900 : #e8e8e8,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #ffffff,
+  A700 : #ffffff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #000000,
+      600 : #000000,
+      700 : #000000,
+      800 : #000000,
+      900 : #000000,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+$BookPicker-primary: mat-palette($custom);
+$BookPicker-accent: mat-palette($md-custom2);
+
+// The warn palette is optional (defaults to red).
+$BookPicker-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$BookPicker-theme: mat-light-theme((
+  color: (
+    primary: $BookPicker-primary,
+    accent: $BookPicker-accent,
+    warn: $BookPicker-warn,
+  )
+));
+$alternate-primary: mat-palette($md-custom3);
+$alternate-accent: mat-palette($md-custom2);
+$alternate-warn: mat-palette($mat-red);
+
+$alternate-theme: mat-light-theme((
+  color: (
+    primary: $alternate-primary,
+    accent: $alternate-accent,
+    warn: $alternate-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($BookPicker-theme);
+@include mat-toolbar-theme($alternate-theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
