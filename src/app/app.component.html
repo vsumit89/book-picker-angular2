@@ -1,0 +1,27 @@
+<div class="main-container" fxFill ngClass.lg="main-container-lg" fxLayout="column">
+    <mat-toolbar *ngIf="nav_bar || !gv.deviceLg" class="mat-elevation-z4" color="{{color}}">
+        <mat-toolbar-row fxLayoutAlign="space-between center">
+            <div class="logo-container" fxLayout="row" fxLayoutAlign="none center">
+                <div *ngIf="(menu_icon&&gv.deviceSm) || (menu_icon&&gv.deviceXs)" fxFlex="10" class="icon-container" fxLayoutAlign="center center">
+                    <button class="menu-button" (click)="sidenav_toggle()" onclick="this.blur()" mat-icon-button>
+                        <mat-icon fxFill class="icon">menu</mat-icon>
+                    </button>
+                </div>
+                <div fxFlex="65" fxFlex.xs="45">
+                    <img class="logo" src="../../assets/images/book-picker-logo.svg">
+                </div>
+            </div>
+            <button *ngIf="login_button" class="right-button buttons" mat-button routerLink="/login">Login</button>
+            <button *ngIf="!login_button" class="right-button buttons" mat-button routerLink="/profile">{{nickname}}</button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-sidenav-container fxFlex="93" [hasBackdrop]='gv.deviceXs || gv.deviceSm'>
+        <mat-sidenav *ngIf="sidenav_visible" class="side-nav" [(opened)]='opened' #sidenav ngClass.xs="w-60" ngClass.md="w-30" ngClass.sm ="w-40" ngClass.lg="w-15">
+            <app-sidenav></app-sidenav>
+        </mat-sidenav>
+      
+        <mat-sidenav-content  style="background: white" id="scrollframe">
+            <router-outlet (activate)="RouterAction()" ></router-outlet>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+</div>

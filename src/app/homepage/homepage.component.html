@@ -1,0 +1,110 @@
+<div fxFill fxLayout="row">
+    <div fxFlex.lg="17" fxFlex.xs="5"></div>
+    <div fxFlex.lg="73" fxFlex.xs="90" fxLayout="column">
+        <div fxLayout="row">
+            <span ngClass.xs="xs-margin-top" class="opening_text">showing books for Aurangabad...</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start end">
+            <span ngClass.xs="xs-margin-top"  class="likely_books">Books you may like</span>
+            <mat-icon class="arrow-icon">arrow_right_alt</mat-icon>
+        </div>
+        <div fxLayout.lg="row" fxLayout.xs="column" fxLayoutAlign="start center" >
+            <div  fxHide.xs="true" fxLayout.lg="row" fxLayoutAlign="space-between center">
+                <div  matRipple routerLink="/home/book-info" *ngFor="let i of book | slice : 0:8" class="books-list book_card" fxFlex="10">
+                    <div >
+                        <img class="img-fluid" src="{{i.src}}">
+                    </div>
+                    <div>
+                        <p class="book-title">{{i.title}}</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngFor="let i of book | slice : 0:3" fxHide.lg="true" fxLayout="row" fxLayoutAlign="space-between center">
+                <div ngClass.xs="xs-margin-top" routerLink="/home/book-info" matRipple routerLink="/home/book-info" *ngFor="let j of book | slice : 0:3" class="books-list" fxFlex="27">
+                    <div >
+                    <img class="img-fluid" src="{{j.src}}">
+                    </div>
+                    <div>
+                        <p class="book-title" >{{i.title}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" style="margin-top: 2em;">
+            <a><span class="load_more">Load more</span></a>
+        </div>
+        <div fxLayout="row" class="genre-list-container">
+            <div fxLayout="row" fxLayout.xs="column" fxFlex.xs="100" fxFlex.lg="72">
+                <div fxLayout="row" class="w-100" fxFlex.lg="50" fxLayoutAlign="space-between center">
+                    <div fxFlex="30" matRipple class="genre_list" fxLayoutAlign="center center">Biography</div>
+                    <div fxFlex="30" matRipple class="genre_list" fxLayoutAlign="center center">Education</div>
+                    <div fxFlex="30" matRipple class="genre_list" fxLayoutAlign="center center">Romantic</div>
+                </div>
+                <div fxFlex.lg="2.5"></div>
+                <div fxLayout="row" ngStyle.xs="margin-top:3%" class="w-100" fxFlex.lg="50" fxLayoutAlign="space-between center">
+                    <div fxFlex="30" matRipple class="genre_list" fxLayoutAlign="center center">Mystery</div>
+                    <div fxFlex="30" matRipple class="genre_list" fxLayoutAlign="center center">Poetry</div>
+                    <div fxFlex="30"></div>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start end">
+            <span class="likely_books">Sci-Fi</span>
+            <mat-icon class="arrow-icon">arrow_right_alt</mat-icon>
+        </div>
+        <div fxLayout.lg="row" fxLayout.xs="column" fxLayoutAlign="start center" >
+            <div  fxHide.xs="true" fxLayout.lg="row" fxLayoutAlign="space-between center">
+                <div matRipple routerLink="/home/book-info" *ngFor="let i of book | slice : 0:8" class="books-list" fxFlex="10">
+                    <div >
+                        <img class="img-fluid" src="../../assets/images/book.svg">
+                    </div>
+                    <div>
+                        <p class="book-title">Subtle Art Of Not Giving A F*ck</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngFor="let i of book | slice : 0:3" fxHide.lg="true" fxLayout="row" fxLayoutAlign="space-between center">
+                <div ngClass.xs="xs-margin-top" matRipple routerLink="/home/book-info" *ngFor="let i of book | slice : 0:3" class="books-list" fxFlex="27">
+                    <div >
+                        <img class="img-fluid" src="../../assets/images/book.svg">
+                    </div>
+                    <div>
+                        <p class="book-title" >Subtle Art Of Not Giving A F*ck</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" style="margin-top: 2em;">
+            <a><span class="load_more">Load more</span></a>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start end">
+            <span class="likely_books">Fiction</span>
+            <mat-icon class="arrow-icon">arrow_right_alt</mat-icon>
+        </div>
+        <div fxLayout.lg="row" fxLayout.xs="column" fxLayoutAlign="start center" >
+            <div  fxHide.xs="true" fxLayout.lg="row" fxLayoutAlign="space-between center">
+                <div matRipple routerLink="/home/book-info" *ngFor="let i of book | slice : 0:8" class="books-list" fxFlex="10">
+                    <div >
+                        <img class="img-fluid" src="../../assets/images/book.svg">
+                    </div>
+                    <div>
+                        <p class="book-title">Subtle Art Of Not Giving A F*ck</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngFor="let i of book | slice : 0:3" fxHide.lg="true" fxLayout="row" fxLayoutAlign="space-between center">
+                <div matRipple routerLink="/home/book-info" ngClass.xs="xs-margin-top" *ngFor="let i of book | slice : 0:3" class="books-list" fxFlex="27">
+                    <div >
+                        <img class="img-fluid" src="../../assets/images/book.svg">
+                    </div>
+                    <div>
+                        <p class="book-title" >Subtle Art Of Not Giving A F*ck</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" style="margin-top: 2em; margin-bottom: 5em;">
+            <a><span class="load_more">Load more</span></a>
+        </div>
+    </div>
+</div>

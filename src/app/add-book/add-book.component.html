@@ -1,0 +1,82 @@
+<div fxLayout="row" fxLayout.xs="row">
+    <div fxFlex="17" fxFlex.xs="5"></div>
+
+    <div fxFlex="83" fxFlex.xs="90" fxLayout="column" >
+        <div fxFlex="20" class="a-d-ttl" [ngStyle.xs]="{'margin-top':'0.9em'}">Add Book</div>
+        <div fxLayout="row" fxLayout.xs="row">
+            <div fxFlex="12" fxFlex.xs="30" fxLayoutAlign="start start"><img class="img-fluid book-image"
+                    src="../../assets/images/book.svg"></div>
+            <div fxFlex="4"></div>
+            <div fxFlex="32" fxFlex.xs="70" fxLayout="column">
+                <div fxFlex="15"> </div>
+                <div fxFlex="10" class="t-b1-ttl" >Enter ISBN of book</div>
+                <div fxFlex="5"></div>
+                <div fxFlex="14" fxFlex.xs="20">
+                    <input class="tx-b" [(ngModel)]="_isbn"  type="text" placeholder="ISBN of your book" required>
+                </div>
+                <div fxFlex="10"></div>
+                <div fxFlex="15"> <button class="btn-search" mat-flat-button color="primary">Search</button></div>
+                <div fxFlex="10"></div>
+                <div fxFlex="10" fxLayout="row">
+                    <div fxFlex="6" fxFlex.xs="10" style="font-family:roboto;">4.5 
+                        <span fxFlex="4" fxFlex.xs="5">
+                            <mat-icon class="list-icons yellow">star_rate</mat-icon>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column" [ngStyle.lg]="{'margin-top':'2em'}">
+            <div fxFlex="16" fxHide.xs></div>
+
+            <div fxFlex="32" fxFlex.xs="60" fxLayout="column">
+                <div fxFlex="40" class="t-b2-ttl" ngClass.xs="spacing-xs">Name</div>
+                <div fxFlex="42">
+                    <input class="tx-b" [(ngModel)]="_bookName" type="text" placeholder="Name of book" required>
+                </div>
+                <div fxFlex="40" class="t-b2-ttl" ngClass.xs="spacing-xs">Edition</div>
+                <div fxFlex="60">
+                    <input class="tx-b" [(ngModel)]="_edition" type="number" placeholder="Enter digit of edition" required>
+                </div>
+
+
+                <div fxFlex="40" class="t-b2-ttl" ngClass.xs="spacing-xs">Author</div>
+                <div fxFlex="42">
+                    <input class="tx-b" [(ngModel)]="_author" type="text" placeholder="Name of author" required>
+                </div>
+            </div>
+            <div fxFlex="4" fxHide.xs></div>
+            <div fxFlex="32" fxFlex.xs="60" fxLayout="column" >
+                <div fxFlex="9" fxFlex.xs="20" class="t-b2-ttl" ngClass.xs="spacing-xs">Genre</div>
+
+                <div fxFlex="14.5" fxFlex.xs="70">
+                    <select  id="_genre" [(ngModel)]="_genre" class="tx-b2"  >
+                        <option selected="selected" value="Select genre" disabled="disabled">Select genre</option>
+                        <option *ngFor="let genre of genres" value={{genre.value}}>{{genre.value}}</option>
+                    </select>
+                </div>
+                <div fxFlex="3"></div>
+
+                <div fxFlex="9" fxFlex.xs="15" class="t-b2-ttl" ngClass.xs="spacing-xs">Your opinion</div>
+
+                <div fxFlex="48" fxFlex.xs="60">
+                    <textarea class="tx-b1" [ngStyle]="{'height':'100%'}" id="opinion" [(ngModel)]="_opinion" required
+                        placeholder="Tell us what you liked about this book"></textarea>
+                </div>
+
+
+            </div>
+        </div>
+        
+        <div fxLayout="row" style="margin-top: 1.8em;">
+            <div fxFlex="78"></div>
+            <div><button mat-flat-button type="reset"  class="btn-cancel">Cancel</button></div>
+            <div fxFlex="2"></div>
+            <div><button mat-flat-button type="submit" color="primary" (click)="addBookToLibrary()" class="btn-add">Add</button></div>
+        </div>
+    </div>
+
+</div>
+

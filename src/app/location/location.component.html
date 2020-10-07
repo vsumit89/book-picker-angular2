@@ -1,0 +1,73 @@
+<div class="flex-contain" [ngStyle]="{'min-height.px': 650}" fxLayout="row">
+    <div class="a bg" fxFlex="50" style="height:100%;" fxHide.sm="true" fxHide.xs="true" fxLayout="row">
+      <div fxFlex="5"></div>
+      <div fxLayout="column" fxFlex="90" fxLayoutAlign="space-between stretch">
+        <div fxLayout="row">
+          <div fxFlex="20" style="margin-top: 0.5em;">
+            <img class="img-fluid" src="../../assets/images/book-picker-logo.svg">
+          </div>
+        </div>
+        <div fxLayout="row" style="margin-top: 5em;">
+          <div fxFlex="60">
+            <img class="img-fluid" src="../../assets/images/share.svg">
+          </div>
+        </div>
+        <div fxLayout="row" style="margin-top: 5em;">
+          <div fxFlex="100">
+            <img class="img-fluid" src="../../assets/images/books.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="a"ngClass.xs="gradiant" ngClass.sm="gradiant" fxLayout="column">
+      <div fxFlex="97" fxFlex.sm="100" fxFlex.lg="97" fxLayout="row">
+        <div fxFlex="10" fxFlex.xs="5"></div>
+        <div fxFlex="80" fxFlex.xs="85" fxLayout="column" style="margin-top: 3%;">
+          <div fxHide.sm="true" fxHide.xs="true" fxLayout="row" dir="rtl">
+            <p style="font-size: 1.5em;">Login/Register</p>
+          </div>
+          <div fxFlex.lg="23" fxFlex.xs="5" fxFlex.sm="5" fxLayout="column"></div>
+          <div fxFlex.lg="22" fxFlex="25" fxFlex.sm="18" fxLayout="column" fxLayoutAlign="space-between stretch">
+            <div>
+              <p class="font" style="font-size: 1.5em; margin-bottom: 0.2em; margin-top: 0;">Location</p>
+              <div style="background: #82D4BB;height: 0.2em;width: 6em;"></div>
+            </div>
+            <div fxLayout="row">
+              <div fxFlex="1" fxFlex.xs="2" style="background: #EAEAEA;"></div>
+              <div fxFlex.xs="10" fxHide.lg="true" fxLayoutAlign="space-around center"
+                style="background: #EAEAEA; padding: 2%;">
+                <!-- <img class="search" class="img-fluid" src="../../assets/images/search icon.svg"> -->
+                <mat-icon>search</mat-icon>
+              </div>
+              <div fxFlex="5" fxHide.xs="true" fxLayoutAlign="space-around center"
+                style="background: #EAEAEA; padding-left: 0.6em;padding-right: 0.6em;">
+                <!-- <img class="search" class="img-fluid" src="../../assets/images/search icon.svg"> -->
+                <mat-icon class="search_icon">search</mat-icon>
+              </div>
+              <div fxFlex="80" fxFlex.xs="88" style="width: 100%; background: #EAEAEA;">
+                <select class="font" (change)="SelectOption($event.target.value)">
+                  <option value="Select City" disabled="disabled" selected="selected">Select City</option>
+                  <option *ngFor="let city of cities" value={{city.value}}>{{city.value}}</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <button class="buttons" (click)="selectLocation()" mat-flat-button color="primary">Search Books</button>
+            </div>
+          </div>
+          <div fxFlex="40" fxFlex.sm="43" fxHide.lg="true" fxLayout="row" fxLayoutAlign="none center">
+            <div fxFlex="80">
+              <img class="img-fluid" src="../../assets/images/share.svg">
+            </div>
+          </div>
+          <div fxFlex="30" fxHide.lg="true" fxLayout="row">
+            <img class="img-fluid" src="../../assets/images/books.png">
+          </div>
+          <div fxFlex="52" fxHide.xs="true" fxHide.sm="true"></div>     
+          <div fxFlex.sm="4" fxFlex.xs="5" fxLayout="row" fxLayoutAlign="center end" fxLayoutAlign.sm="center center">
+            <app-quote></app-quote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

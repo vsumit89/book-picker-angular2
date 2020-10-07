@@ -1,0 +1,33 @@
+<div class="select-genre" [ngStyle]="{'min-height.px': 600}" fxFill fxLayout="row">
+    <div fxFlex.xs="5"></div>
+    <div fxFlex.xs="90" ngClass.xs="h-130" fxFlex.lg="100" fxLayout="column">
+      <div fxFlex.lg="5"></div>
+      <div class="page-title" [ngStyle.xs]="{'font-size':'1.9em'}" fxFlex="10" fxFlex.xs="7" fxLayout="row" fxLayoutAlign="center center">Tell us what you love to read</div>
+      <div class="page-description" fxFlex="10" fxFlex.xs="7" fxLayout="row" fxLayoutAlign="center start">
+        <div fxFlex="90">select your favorite genres,
+          so we can know<br fxHide.xs="true">
+          your choices better</div>
+      </div>
+      <div fxFlex.xs="75" fxFlex.lg="60" fxLayout="column" fxLayout.xs="row" fxLayoutAlign="space-around center" fxLayoutAlign.xs="space-around strech">
+        <div class="w-65" fxFlex.xs="40" fxLayout.xs="column" fxLayout='row' fxLayoutAlign="space-between center">
+          <div fxFlex.lg="17"><img fxFill class="img-fluid genre-card"  [ngStyle]="style[0]" (click)="select(0, 'bioCard')" src="../../assets/images/bioCard.svg"></div>
+          <div fxFlex.lg="17"><img fxFill class="img-fluid genre-card" [ngStyle]="style[1]" (click)="select(1, 'RomanticCard')" src="../../assets/images/RomanticCard.svg"></div>
+          <div fxFlex.lg="17"><img fxFill class="img-fluid genre-card" [ngStyle]="style[2]" (click)="select(2, 'fictionCard')" src="../../assets/images/fictionCard.svg"></div>
+          <div fxFlex.lg="17"><img fxFill class="img-fluid genre-card" [ngStyle]="style[3]" (click)="select(3, 'educationCard')" src="../../assets/images/educationCard.svg"></div>
+        </div>
+        <div class="w-65" fxFlex.xs="40" fxLayout.xs="column" fxLayout='row' fxLayoutAlign="space-between center">
+          <div fxFlex.lg="17"><img fxFill class="img-fluid genre-card" [ngStyle]="style[4]" (click)="select(4,'mistryCard')" src="../../assets/images/mistryCard.svg"></div>
+          <div fxFlex.lg="17"><img fxFill class="img-fluid genre-card" [ngStyle]="style[5]" (click)="select(5,'poetryCard')" src="../../assets/images/poetryCard.svg"></div>
+          <div fxFlex.lg="17"><img fxFill class="img-fluid genre-card" [ngStyle]="style[6]" (click)="select(6,'scifiCard')" src="../../assets/images/scifiCard.svg"></div>
+          <div fxFlex.lg="17"><img fxFill class="img-fluid genre-card" [ngStyle]="style[7]" (click)="select(7,'othersCard')" src="../../assets/images/othersCard.svg"></div>
+        </div>
+      </div>
+      <div fxFlex="17" fxFlex.xs="11" fxLayout="row" fxLayoutAlign="end center">
+        <div fxLayout="row" fxFlex.lg="20" fxLayoutAlign="center center">
+          <button class="buttons" mat-flat-button color="primary" (click)="select_genre()" >Next</button>
+        </div>
+        <div fxFlex.xs="5"></div>
+      </div>
+      
+    </div>
+  </div>
