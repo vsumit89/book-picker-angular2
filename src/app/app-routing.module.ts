@@ -24,7 +24,12 @@ const routes: Routes = [
   },
   { path: 'add-book', component: AddBookComponent, canActivate: [AuthGaurdGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGaurdGuard] },
-  { path: 'your-books', component: YourBooksComponent, canActivate: [AuthGaurdGuard] },
+  { path: 'your-books', 
+    children: [
+      { path: '', component: YourBooksComponent, canActivate: [AuthGaurdGuard] },
+      { path: 'book-info', component: BookInfoComponent, canActivate: [AuthGaurdGuard] },
+    ] 
+  },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGaurdGuard] },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },

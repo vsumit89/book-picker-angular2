@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
-// import { Book } from '../book';
+import { Book } from '../book';
 import { FormGroup, FormBuilder,FormControl } from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { GetBookService } from '../services/get-book.service';
 
 interface Genre{
   value: string;
-  viewValue
+  viewValue : string
 }
 
 @Component({
@@ -15,12 +16,13 @@ interface Genre{
   styleUrls: ['./add-book.component.sass']
 })
 export class AddBookComponent implements OnInit {
-  _isbn : string;
-  _bookName : string;
-  _edition : string;
-  _author : string;
-  _genre : string;
-  _opinion: string;
+  isbn : string;
+  bookName : string;
+  edition : number;
+  author : string;
+  genre : string;
+  opinion: string;
+  mobile: string
 
   genres: Genre[] = [
     {value: 'Biography', viewValue: 'Biography'},
@@ -33,41 +35,48 @@ export class AddBookComponent implements OnInit {
     {value: 'Others', viewValue: 'Others'}
   ];
 
-  // bookDetails: FormGroup= new FormGroup({});
-  // book: FormGroup= new FormGroup({})
-  // public newbookDetails: Book = new Book();
-  // constructor(
-  //   public _fb: FormBuilder,
-  //   public _http: HttpClient
-  //   ) {
-      
+  bookDetails: FormGroup= new FormGroup({});
+  book: FormGroup= new FormGroup({})
+  public newbookDetails: Book = new Book();
+  constructor(
+    public _fb: FormBuilder,
+    public _http: HttpClient,
+    public  bookService: GetBookService,
+    
+    ){}  
 
-  //     }  
   ngOnInit(){ }
   
+  getBookFuction(){
+    this.bookService.GetBooks(this.isbn).subscribe(response => {
+      const items = JSON.stringify(response)
+      console.log(items)
+    })
+  }
+  SelectOption(genre){this.genre=genre;}
   
   addBookToLibrary(){
-    // this.bookDetails = this._fb.group({
-    //   id: ['5db2ebd3-09bb-4b35-a084-af7c0d880b36'],
-    //   book: this._fb.group({
-    //     _isbn:[this._isbn],
-    //     _bookName:[this._bookName],
-    //     _author:[this._author],
-    //     _edition:[this._edition],
-    //     _genre:[this._genre],
-    //     _opinion:[this._opinion]
-    //   })
-    // })
+    this.bookDetails = this._fb.group({
+      mobile: ['100'],
+      book: this._fb.group({
+         isbn:[this.isbn],
+         bookName:[this.bookName],
+         author:[this.author],
+         edition:[this.edition],
+         genre:[this.genre],
+         opinion:[this.opinion]
+      })
+    })
 
-    // this.newbookDetails = <Book>this.bookDetails.value;
-    // console.log(this.newbookDetails);
-    // var Header = new HttpHeaders();
-    // Header.append("Content-Type", "application/json").append('Cache-Control', 'no-cache');
-    // this._http.post('/', JSON.stringify(this.newbookDetails), { headers: Header }).subscribe(
-    // (data) => console.log(data),
-    // (response) => console.log(response),
-    // // (error) => console.log(error)
-    // )
+    this.newbookDetails = <Book>this.bookDetails.value;
+    console.log(this.newbookDetails);
+    var Header = new HttpHeaders();
+    Header.append("Content-Type", "application/json").append('Cache-Control', 'no-cache');
+    this._http.post('/', JSON.stringify(this.newbookDetails), { headers: Header }).subscribe(
+    (data) => console.log(data),
+    (response) => console.log(response),
+    // (error) => console.log(error)
+    )
   }
 
 }
