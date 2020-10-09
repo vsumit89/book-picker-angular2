@@ -1,3 +1,4 @@
+
 <div fxLayout="row" fxLayout.xs="row">
     <div fxFlex="17" fxFlex.xs="5"></div>
 
@@ -12,17 +13,14 @@
                 <div fxFlex="10" class="t-b1-ttl" >Enter ISBN of book</div>
                 <div fxFlex="5"></div>
                 <div fxFlex="14" fxFlex.xs="20">
-                    <input class="tx-b" [(ngModel)]="_isbn"  type="text" placeholder="ISBN of your book" required>
+                    <input class="tx-b" [(ngModel)]="isbn"  type="text" placeholder="ISBN of your book" required>
                 </div>
                 <div fxFlex="10"></div>
-                <div fxFlex="15"> <button class="btn-search" mat-flat-button color="primary">Search</button></div>
+                <div fxFlex="15"> <button class="btn-search" (click)="getBookFuction()" mat-flat-button color="primary">Search</button></div>
                 <div fxFlex="10"></div>
                 <div fxFlex="10" fxLayout="row">
-                    <div fxFlex="6" fxFlex.xs="10" style="font-family:roboto;">4.5 
-                        <span fxFlex="4" fxFlex.xs="5">
-                            <mat-icon class="list-icons yellow">star_rate</mat-icon>
-                        </span>
-                    </div>
+                    <span fxFlex="6" fxFlex.xs="10" style="font-family:roboto;" fxLayoutAlign="start center">4.5</span>
+                    <span fxFlex="4" fxFlex.xs="5" fxLayoutAlign="center center" style="padding-top: 0.3em;"> <mat-icon class="list-icons star-icon" >star_rate</mat-icon> </span>
                 </div>
             </div>
 
@@ -34,17 +32,17 @@
             <div fxFlex="32" fxFlex.xs="60" fxLayout="column">
                 <div fxFlex="40" class="t-b2-ttl" ngClass.xs="spacing-xs">Name</div>
                 <div fxFlex="42">
-                    <input class="tx-b" [(ngModel)]="_bookName" type="text" placeholder="Name of book" required>
+                    <input class="tx-b" [(ngModel)]="bookName" type="text" placeholder="Name of book" required>
                 </div>
                 <div fxFlex="40" class="t-b2-ttl" ngClass.xs="spacing-xs">Edition</div>
                 <div fxFlex="60">
-                    <input class="tx-b" [(ngModel)]="_edition" type="number" placeholder="Enter digit of edition" required>
+                    <input class="tx-b" [(ngModel)]="edition" type="number" placeholder="Enter digit of edition" required>
                 </div>
 
 
                 <div fxFlex="40" class="t-b2-ttl" ngClass.xs="spacing-xs">Author</div>
                 <div fxFlex="42">
-                    <input class="tx-b" [(ngModel)]="_author" type="text" placeholder="Name of author" required>
+                    <input class="tx-b" [(ngModel)]="author" type="text" placeholder="Name of author" required>
                 </div>
             </div>
             <div fxFlex="4" fxHide.xs></div>
@@ -52,7 +50,7 @@
                 <div fxFlex="9" fxFlex.xs="20" class="t-b2-ttl" ngClass.xs="spacing-xs">Genre</div>
 
                 <div fxFlex="14.5" fxFlex.xs="70">
-                    <select  id="_genre" [(ngModel)]="_genre" class="tx-b2"  >
+                    <select  id="genre" (change)="SelectOption($event.target.value)" class="tx-b2"  >
                         <option selected="selected" value="Select genre" disabled="disabled">Select genre</option>
                         <option *ngFor="let genre of genres" value={{genre.value}}>{{genre.value}}</option>
                     </select>
@@ -62,7 +60,7 @@
                 <div fxFlex="9" fxFlex.xs="15" class="t-b2-ttl" ngClass.xs="spacing-xs">Your opinion</div>
 
                 <div fxFlex="48" fxFlex.xs="60">
-                    <textarea class="tx-b1" [ngStyle]="{'height':'100%'}" id="opinion" [(ngModel)]="_opinion" required
+                    <textarea class="tx-b1" [ngStyle]="{'height':'100%'}" id="opinion" [(ngModel)]="opinion" required
                         placeholder="Tell us what you liked about this book"></textarea>
                 </div>
 
