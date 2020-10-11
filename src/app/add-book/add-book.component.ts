@@ -4,12 +4,13 @@ import { Book } from '../book';
 import { FormGroup, FormBuilder,FormControl } from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { GetBookService } from '../services/get-book.service';
+import { GlobalBooks } from '../global-books';
+
 
 interface Genre{
   value: string;
   viewValue : string
 }
-
 @Component({
   selector: 'app-add-book',
   templateUrl: './add-book.component.html',
@@ -22,8 +23,8 @@ export class AddBookComponent implements OnInit {
   author : string;
   genre : string;
   opinion: string;
-  mobile: string
-
+  mobile: string;
+  Show: boolean;
   genres: Genre[] = [
     {value: 'Biography', viewValue: 'Biography'},
     {value: 'Romantic', viewValue: 'Romantic'},
@@ -42,16 +43,19 @@ export class AddBookComponent implements OnInit {
     public _fb: FormBuilder,
     public _http: HttpClient,
     public  bookService: GetBookService,
+    public gb: GlobalBooks,
     
-    ){}  
+    ){  }  
 
-  ngOnInit(){ }
+  ngOnInit(){ 
+  }
   
   getBookFuction(){
     this.bookService.GetBooks(this.isbn).subscribe(response => {
-      const items = JSON.stringify(response)
+      const books = JSON.parse(JSON.stringify(response));
+      const items = books.items
       console.log(items)
-    })
+    });
   }
   SelectOption(genre){this.genre=genre;}
   

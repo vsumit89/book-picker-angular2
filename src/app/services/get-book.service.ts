@@ -10,9 +10,8 @@ export class GetBookService {
   _URL = 'https://www.googleapis.com/books/v1/volumes?q='
   constructor(public _http: HttpClient) { }
 
-  GetBooks(isbn) {
+  GetBooks(s) {
     const headers = new HttpHeaders({'content-type': 'application/json','Anonymous' : 'true'})
-    return this._http.get(this._URL + 'isbn:'+isbn+'&fields=items/volumeInfo(title,authors,description,imageLinks/thumbnail,averageRating)', {headers: headers})
-    // return this._http.get(this._URL +isbn+'&fields=items/volumeInfo(title,authors,description,imageLinks/thumbnail,averageRating)', {headers: headers})
-  }
+    return this._http.get(this._URL + 'title:'+s+'&fields=items/volumeInfo(title,authors,description,imageLinks/thumbnail,averageRating)', {headers: headers})
+     }
 }

@@ -17,19 +17,26 @@
                 <div fxFlex="10"></div>
                 <div fxFlex="15"> <button class="btn-search" (click)="getBookFuction()" mat-flat-button color="primary">Search</button></div>
                 <div fxFlex="10"></div>
+                <!-- <div>
+                   {{ items.volumeInfo.title }}
+                    <ul>
+                        <li *ngFor="let item of items">{{ item }}</li>
+                    </ul>
+                       
+                </div> -->
                 <div fxFlex="10" fxLayout="row">
                     <span fxFlex="6" fxFlex.xs="10" style="font-family:roboto;" fxLayoutAlign="start center">4.5</span>
-                    <span fxFlex="4" fxFlex.xs="5" fxLayoutAlign="center center" style="padding-top: 0.3em;"> <mat-icon class="list-icons star-icon" >star_rate</mat-icon> </span>
+                    <span fxFlex="4" fxFlex.xs="5" fxLayoutAlign="center center" style="padding-top: 0.6em;"> <mat-icon class="list-icons star-icon" >star_rate</mat-icon> </span>
                 </div>
             </div>
 
         </div>
-
-        <div fxLayout="row" fxLayout.xs="column" [ngStyle.lg]="{'margin-top':'2em'}">
+        
+        <div fxLayout="row" fxLayout.xs="column" [ngStyle.lg]="{'margin-top':'2em'}" >
             <div fxFlex="16" fxHide.xs></div>
 
             <div fxFlex="32" fxFlex.xs="60" fxLayout="column">
-                <div fxFlex="40" class="t-b2-ttl" ngClass.xs="spacing-xs">Name</div>
+                <div fxFlex="40" class="t-b2-ttl" ngClass.xs="spacing-xs" >Name</div>
                 <div fxFlex="42">
                     <input class="tx-b" [(ngModel)]="bookName" type="text" placeholder="Name of book" required>
                 </div>
@@ -77,4 +84,3 @@
 
 </div>
 
-<div class="changes" style="font-size: 50px;">Changes in ADD book</div>

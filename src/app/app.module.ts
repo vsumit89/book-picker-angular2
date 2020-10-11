@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatSelectModule} from '@angular/material/select';
 import { MatButtonModule} from '@angular/material/button'
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -39,6 +39,7 @@ import { AddBookComponent } from './add-book/add-book.component';
 import { YourBooksComponent } from './your-books/your-books.component';
 import { SettingsComponent } from './settings/settings.component';
 import { GlobalBooks } from './global-books';
+import { AddComponent } from './add/add.component';
 
 
 firebase.initializeApp(environment.firebaseConfig);
@@ -57,6 +58,7 @@ firebase.initializeApp(environment.firebaseConfig);
     AddBookComponent,
     YourBooksComponent,
     SettingsComponent,
+    AddComponent,
   ],
   imports: [
     ReactiveFormsModule,
