@@ -30,7 +30,7 @@ export class SidenavComponent implements OnInit {
     if (this.router.url === '/home') {this.disableHome()}
     if (this.router.url === '/home/add-book') {this.disableAddBook()}
     if (this.router.url === '/home/profile') {this.disableProfile()}
-    if (this.router.url === '/home/your-books') {this.disableYourBooks()}
+    if (this.router.url === '/home/your-books') {this.disableMyBooks()}
     if (this.router.url === '/home/settings') {this.disableSettings()}
   }
   disableAddBook() {
@@ -48,7 +48,7 @@ export class SidenavComponent implements OnInit {
     this.style[2].style = {'background': '#EAEAEA'}
     this.style[1]= this.style[3]= this.style[4]= this.style[5]= this.style[0] = {disabled : false, style : {}}
   }
-  disableYourBooks() {
+  disableMyBooks() {
     this.style[3].disabled = true
     this.style[3].style = {'background': '#EAEAEA'}
     this.style[2]= this.style[1]= this.style[4]= this.style[5]= this.style[0] = {disabled : false, style : {}}

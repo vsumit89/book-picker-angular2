@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   { path: 'add-book', component: AddBookComponent, canActivate: [AuthGaurdGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGaurdGuard] },
-  { path: 'your-books', 
+  { path: 'my-books', 
     children: [
       { path: '', component: YourBooksComponent, canActivate: [AuthGaurdGuard] },
       { path: 'book-info', component: BookInfoComponent, canActivate: [AuthGaurdGuard] },
