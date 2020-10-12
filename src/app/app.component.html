@@ -21,7 +21,7 @@
         </mat-sidenav>
       
         <mat-sidenav-content  style="background: white" id="scrollframe">
-            <app-add-book></app-add-book>
+            <router-outlet (activate)="RouterAction()" ></router-outlet>
         </mat-sidenav-content>
       </mat-sidenav-container>
 </div>
