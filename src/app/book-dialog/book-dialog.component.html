@@ -1,0 +1,10 @@
+
+ <div>
+    <span>Select your book</span>
+    <!-- <div>
+        {{ items[0].volumeInfo.title }} 
+    </div> -->
+    <ul>
+        <li *ngFor="let item of items">{{ item.volumeInfo.title }}</li>
+    </ul>
+ </div>  

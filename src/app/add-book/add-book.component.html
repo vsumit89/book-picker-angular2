@@ -17,12 +17,10 @@
                 <div fxFlex="10"></div>
                 <div fxFlex="15"> <button class="btn-search" (click)="getBookFuction()" mat-flat-button color="primary">Search</button></div>
                 <div fxFlex="10"></div>
-                <!-- <div>
-                   {{ items.volumeInfo.title }}
-                    <ul>
-                        <li *ngFor="let item of items">{{ item }}</li>
-                    </ul>
-                       
+                <!-- <div *ngIf="display">
+                    <div *ngFor="let item of items">
+                        {{ item.volumeInfo.title }}
+                    </div>
                 </div> -->
                 <div fxFlex="10" fxLayout="row">
                     <span fxFlex="6" fxFlex.xs="10" style="font-family:roboto;" fxLayoutAlign="start center">4.5</span>

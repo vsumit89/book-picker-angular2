@@ -5,7 +5,8 @@ import { FormGroup, FormBuilder,FormControl } from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { GetBookService } from '../services/get-book.service';
 import { GlobalBooks } from '../global-books';
-
+import { MatDialog } from '@angular/material/dialog';
+import { BookDialogComponent } from '../book-dialog/book-dialog.component';
 
 interface Genre{
   value: string;
@@ -25,6 +26,8 @@ export class AddBookComponent implements OnInit {
   opinion: string;
   mobile: string;
   Show: boolean;
+  items;
+  display = false;
   genres: Genre[] = [
     {value: 'Biography', viewValue: 'Biography'},
     {value: 'Romantic', viewValue: 'Romantic'},
@@ -44,19 +47,26 @@ export class AddBookComponent implements OnInit {
     public _http: HttpClient,
     public  bookService: GetBookService,
     public gb: GlobalBooks,
-    
+    public dialog : MatDialog
     ){  }  
 
   ngOnInit(){ 
   }
-  
+
   getBookFuction(){
     this.bookService.GetBooks(this.isbn).subscribe(response => {
-      const books = JSON.parse(JSON.stringify(response));
-      const items = books.items
-      console.log(items)
+      // const books = JSON.parse(JSON.stringify(response));
+      // this.items = books.items
+      const dialogRef = this.dialog.open(BookDialogComponent, {
+        data:{data:response}
+        });
+        dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+
     });
-  }
+    
+  }z
   SelectOption(genre){this.genre=genre;}
   
   addBookToLibrary(){

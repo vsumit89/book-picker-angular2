@@ -39,9 +39,10 @@ import { AddBookComponent } from './add-book/add-book.component';
 import { YourBooksComponent } from './your-books/your-books.component';
 import { SettingsComponent } from './settings/settings.component';
 import { GlobalBooks } from './global-books';
-import { AddComponent } from './add/add.component';
-
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { from } from 'rxjs';
+import { BookDialogComponent } from './book-dialog/book-dialog.component';
+import { CommonModule } from '@angular/common'; 
 firebase.initializeApp(environment.firebaseConfig);
 
 @NgModule({
@@ -58,9 +59,12 @@ firebase.initializeApp(environment.firebaseConfig);
     AddBookComponent,
     YourBooksComponent,
     SettingsComponent,
-    AddComponent,
   ],
+  entryComponents:[BookDialogComponent],
   imports: [
+    CommonModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
     ReactiveFormsModule,
     MatProgressBarModule,
     FormsModule,
