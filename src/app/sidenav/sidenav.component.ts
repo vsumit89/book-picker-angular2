@@ -28,10 +28,10 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.router.url === '/home') {this.disableHome()}
-    if (this.router.url === '/home/add-book') {this.disableAddBook()}
-    if (this.router.url === '/home/profile') {this.disableProfile()}
-    if (this.router.url === '/home/your-books') {this.disableMyBooks()}
-    if (this.router.url === '/home/settings') {this.disableSettings()}
+    if (this.router.url === '/add-book') {this.disableAddBook()}
+    if (this.router.url === '/profile') {this.disableProfile()}
+    if (this.router.url === '/my-books') {this.disableMyBooks()}
+    if (this.router.url === '/settings') {this.disableSettings()}
   }
   disableAddBook() {
     this.style[0].disabled = true

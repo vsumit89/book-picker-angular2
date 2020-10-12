@@ -37,9 +37,9 @@ import { SelectGenreComponent } from './select-genre/select-genre.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LocationComponent } from './location/location.component';
 import { AddBookComponent } from './add-book/add-book.component';
-import { YourBooksComponent } from './your-books/your-books.component';
 import { SettingsComponent } from './settings/settings.component';
 import { GlobalBooks } from './global-books';
+import { MyBooksComponent } from './my-books/my-books.component';
 
 
 firebase.initializeApp(environment.firebaseConfig);
@@ -56,8 +56,8 @@ firebase.initializeApp(environment.firebaseConfig);
     ProfileComponent,
     LocationComponent,
     AddBookComponent,
-    YourBooksComponent,
     SettingsComponent,
+    MyBooksComponent,
   ],
   imports: [
     ReactiveFormsModule,

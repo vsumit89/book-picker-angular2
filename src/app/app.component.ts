@@ -161,7 +161,7 @@ export class AppComponent implements OnInit, OnDestroy {
               this.opened = true;
             }
           }else
-          if (this.current_url === '/your-books') {
+          if (this.current_url === '/my-books') {
             this.IsLoggedIn()
             if (this.gv.deviceXs){
               this.close()

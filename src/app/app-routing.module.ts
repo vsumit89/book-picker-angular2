@@ -10,7 +10,7 @@ import { SelectGenreComponent } from './select-genre/select-genre.component';
 
 import { AuthGaurdGuard } from './services/auth-gaurd.guard'
 import { SettingsComponent } from './settings/settings.component';
-import { YourBooksComponent } from './your-books/your-books.component';
+import { MyBooksComponent } from './my-books/my-books.component';
 
 const routes: Routes = [
   { path: 'select-genre', component: SelectGenreComponent},
@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGaurdGuard] },
   { path: 'my-books', 
     children: [
-      { path: '', component: YourBooksComponent, canActivate: [AuthGaurdGuard] },
+      { path: '', component: MyBooksComponent, canActivate: [AuthGaurdGuard] },
       { path: 'book-info', component: BookInfoComponent, canActivate: [AuthGaurdGuard] },
     ] 
   },
