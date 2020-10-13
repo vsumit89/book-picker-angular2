@@ -147,7 +147,7 @@ export class AppComponent implements OnInit, OnDestroy {
             this.sidenav_visible = false;
             this.PageHeight = "100";
           } else
-          if (this.current_url === '/profile') {
+          if (this.current_url === '/profile' || this.current_url === '/add-book' || this.current_url === '/my-books' || this.current_url === '/chats' || this.current_url === '/notifications') {
             this.IsLoggedIn()
             if (this.gv.deviceXs){
               this.close()
@@ -161,49 +161,7 @@ export class AppComponent implements OnInit, OnDestroy {
               this.opened = true;
             }
           }else
-          if (this.current_url === '/my-books') {
-            this.IsLoggedIn()
-            if (this.gv.deviceXs){
-              this.close()
-            }
-            this.menu_icon = true;
-            this.color = "primary";
-            this.nav_bar = true;
-            this.sidenav_visible = true;
-            this.PageHeight = "93";
-            if (this.gv.deviceLg) {
-              this.opened = true;
-            }
-          }else
-          if (this.current_url === '/add-book') {
-            this.IsLoggedIn()
-            if (this.gv.deviceXs){
-              this.close()
-            }
-            this.menu_icon = true;
-            this.color = "primary";
-            this.nav_bar = true;
-            this.sidenav_visible = true;
-            this.PageHeight = "93";
-            if (this.gv.deviceLg) {
-              this.opened = true;
-            }
-          } else
-          if (this.current_url === '/settings') {
-            this.IsLoggedIn()
-            if (this.gv.deviceXs){
-              this.close()
-            }
-            this.menu_icon = true;
-            this.color = "primary";
-            this.nav_bar = true;
-            this.sidenav_visible = true;
-            this.PageHeight = "93";
-            if (this.gv.deviceLg) {
-              this.opened = true;
-            }
-          }else
-          if (this.current_url === '/home/book-info' || this.current_url === '/your-books/book-info') {
+          if (this.current_url === '/home/book-info' || this.current_url === '/my-books/book-info') {
             this.IsLoggedIn()
             if (this.gv.deviceXs){
               this.close()
