@@ -7,7 +7,6 @@ import { GlobalVar } from './global-var';
 
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
-import { Meta } from '@angular/platform-browser';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -18,12 +17,16 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnInit, OnDestroy {
   title ='BookPicker'
   @ViewChild('sidenav') sidenav: MatSidenav;
-  scrollContainer: any;
   close() {
     this.opened = false
   }
   sidenav_toggle() {
     this.sidenav.toggle();
+    if(this.overlay === true) {
+      this.overlay = false
+    } else {
+      this.overlay = true
+    }
     console.log("clicked");
   }
   color;
@@ -33,6 +36,8 @@ export class AppComponent implements OnInit, OnDestroy {
   url;
   scrHeight:any
   scrWidth:any
+  overlay = false
+  min_height
 
   nickname;
   login_button;
@@ -43,22 +48,18 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize',['$event'])
   onresize(event){
+    console.log(window.innerHeight)
     if(this.scrWidth != window.innerWidth){
-      // this.fix_height();
+      this.fix_height();
     }
   }
   fix_height(){
     this.scrWidth = window.innerWidth
     this.scrHeight = window.innerHeight
     console.log(this.scrHeight,this.scrWidth)
-    this.metaService.updateTag({
-      name: 'viewport',
-      content: `height=${this.scrHeight}, width=device-width, initial-scale=1.0`
-    },
-      `name='viewport'`
-    );
+    this.min_height = this.scrHeight
   }
-  constructor(public router: Router, private metaService : Meta, public gv: GlobalVar, public mo: MediaObserver, public authservice: AuthService) { 
+  constructor(public router: Router, public gv: GlobalVar, public mo: MediaObserver, public authservice: AuthService) { 
     
   }
   IsLoggedIn() {
@@ -68,8 +69,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.nickname = localStorage.getItem('nickname');
   }
   ngOnInit() {
-    this.scrollContainer = document.getElementById('scrollframe')
-    // this.fix_height();
+    this.fix_height()
     if (localStorage.getItem('IsLoggedIn') === null || localStorage.getItem('IsLoggedIn') === "undefined") {
       this.router.navigate(['/home'])
     } else {
@@ -107,7 +107,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   RouterAction() {
-    document.getElementById('scrollframe').scroll(0,0)
     this.current_url = this.router.url;
     if (this.current_url === '/home') {
       this.IsLoggedIn()
@@ -118,7 +117,6 @@ export class AppComponent implements OnInit, OnDestroy {
       this.color = "primary";
       this.sidenav_visible = true;
       this.nav_bar = true;
-      this.PageHeight = "93";
       if (this.gv.deviceLg) {
         this.opened = true;
       }
@@ -137,7 +135,6 @@ export class AppComponent implements OnInit, OnDestroy {
           this.color = "accent";
           this.nav_bar = false;
           this.sidenav_visible = false;
-          this.PageHeight = "100";
         } else
           if (this.current_url === '/location') {
             this.IsLoggedIn()
@@ -145,7 +142,6 @@ export class AppComponent implements OnInit, OnDestroy {
             this.color = "accent";
             this.nav_bar = false;
             this.sidenav_visible = false;
-            this.PageHeight = "100";
           } else
           if (this.current_url === '/profile' || this.current_url === '/add-book' || this.current_url === '/my-books' || this.current_url === '/chats' || this.current_url === '/notifications') {
             this.IsLoggedIn()
@@ -156,7 +152,6 @@ export class AppComponent implements OnInit, OnDestroy {
             this.color = "primary";
             this.nav_bar = true;
             this.sidenav_visible = true;
-            this.PageHeight = "93";
             if (this.gv.deviceLg) {
               this.opened = true;
             }
@@ -170,7 +165,6 @@ export class AppComponent implements OnInit, OnDestroy {
             this.color = "primary";
             this.nav_bar = true;
             this.sidenav_visible = true;
-            this.PageHeight = "93";
             if (this.gv.deviceLg) {
               this.opened = true;
             }

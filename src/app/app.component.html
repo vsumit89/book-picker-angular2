@@ -1,4 +1,4 @@
-<div class="main-container" fxFill ngClass.lg="main-container-lg" fxLayout="column">
+<div class="main-container" fxFill ngClass.lg="main-container-lg" [ngStyle]="{'min-height' : min_height}" fxLayout="column">
     <mat-toolbar *ngIf="nav_bar || !gv.deviceLg" class="mat-elevation-z4" color="{{color}}">
         <mat-toolbar-row fxLayoutAlign="space-between center">
             <div class="logo-container" fxLayout="row" fxLayoutAlign="none center">
@@ -15,13 +15,16 @@
             <button *ngIf="!login_button" class="right-button buttons" mat-button routerLink="/profile">{{nickname}}</button>
         </mat-toolbar-row>
     </mat-toolbar>
-    <mat-sidenav-container fxFlex="93" [hasBackdrop]='gv.deviceXs || gv.deviceSm'>
-        <mat-sidenav *ngIf="sidenav_visible" class="side-nav" [(opened)]='opened' #sidenav ngClass.xs="w-60" ngClass.md="w-30" ngClass.sm ="w-40" ngClass.lg="w-15">
+    <mat-sidenav-container fxFill class="side-nav-container" [hasBackdrop]='false'>
+        <mat-sidenav *ngIf="sidenav_visible" class="side-nav" [(opened)]='opened' #sidenav ngClass.xs="w-60 side-nav-xs" ngClass.md="w-30" ngClass.sm ="w-40" ngClass.lg="w-15">
             <app-sidenav></app-sidenav>
         </mat-sidenav>
       
-        <mat-sidenav-content  style="background: white" id="scrollframe">
-            <router-outlet (activate)="RouterAction()" ></router-outlet>
+        <mat-sidenav-content fxFill  style="background: white" id="scrollframe">
+            <main>
+                <div *ngIf="overlay" (click)="sidenav_toggle()" class="overlay"></div>
+                <router-outlet fxFill (activate)="RouterAction()" ></router-outlet>
+            </main>
         </mat-sidenav-content>
       </mat-sidenav-container>
 </div>
