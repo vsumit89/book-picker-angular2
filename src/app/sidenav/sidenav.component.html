@@ -29,13 +29,13 @@
       <mat-icon class="list-icons">person</mat-icon>
       <span class="list-text">Profile</span>
     </div>
-    <div #trigger matRipple [matRippleDisabled]='style[5].disabled' [ngStyle]='style[5].style' routerLink="/settings"
-      (click)='disableSettings()' class="w-100 b-r ripple  up-m" fxLayout="row" fxLayoutAlign="start center">
+    <div #trigger matRipple [matRippleDisabled]='style[5].disabled' [ngStyle]='style[5].style' routerLink="/chats"
+      (click)='disableChats()' class="w-100 b-r ripple  up-m" fxLayout="row" fxLayoutAlign="start center">
       <mat-icon class="list-icons">chat_bubble</mat-icon>
       <span class="list-text">Chats</span>
     </div>
-    <div #trigger matRipple [matRippleDisabled]='style[5].disabled' [ngStyle]='style[5].style' routerLink="/settings"
-      (click)='disableSettings()' class="w-100 b-r ripple  up-m" fxLayout="row" fxLayoutAlign="start center">
+    <div #trigger matRipple [matRippleDisabled]='style[5].disabled' [ngStyle]='style[6].style' routerLink="/notifications"
+      (click)='disableNotifications()' class="w-100 b-r ripple  up-m" fxLayout="row" fxLayoutAlign="start center">
       <mat-icon class="list-icons">notifications</mat-icon>
       <span class="list-text">Notifications</span>
       <div class="circle numNotf" fxLayout="row" fxLayoutAlign="center center">

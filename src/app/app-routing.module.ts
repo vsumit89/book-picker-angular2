@@ -6,10 +6,11 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { LocationComponent } from './location/location.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ChatsComponent } from './chats/chats.component'
+import { NotificationsComponent } from './notifications/notifications.component'
 import { SelectGenreComponent } from './select-genre/select-genre.component';
 
 import { AuthGaurdGuard } from './services/auth-gaurd.guard'
-import { SettingsComponent } from './settings/settings.component';
 import { MyBooksComponent } from './my-books/my-books.component';
 
 const routes: Routes = [
@@ -22,8 +23,9 @@ const routes: Routes = [
       { path: 'book-info', component: BookInfoComponent, canActivate: [AuthGaurdGuard] },
     ]
   },
+  { path: 'chats', component: ChatsComponent, canActivate: [AuthGaurdGuard] },
+  { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGaurdGuard] },
   { path: 'add-book', component: AddBookComponent, canActivate: [AuthGaurdGuard] },
-  { path: 'settings', component: SettingsComponent, canActivate: [AuthGaurdGuard] },
   { path: 'my-books', 
     children: [
       { path: '', component: MyBooksComponent, canActivate: [AuthGaurdGuard] },

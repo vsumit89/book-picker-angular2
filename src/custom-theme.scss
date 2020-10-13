@@ -110,7 +110,8 @@ $md-custom2: (
         A400 : #000000,
         A700 : #000000,
     )
-);$md-custom3: (
+);
+$md-custom3: (
   50 : #fdfdfd,
   100 : #fbfbfb,
   200 : #f9f9f9,
@@ -142,6 +143,39 @@ $md-custom2: (
       A700 : #000000,
   )
 );
+$md-custom4: (
+    50 : #fcfcfc,
+    100 : #f9f9f9,
+    200 : #f5f5f5,
+    300 : #f0f0f0,
+    400 : #ededed,
+    500 : #eaeaea,
+    600 : #e7e7e7,
+    700 : #e4e4e4,
+    800 : #e1e1e1,
+    900 : #dbdbdb,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
 $BookPicker-primary: mat-palette($custom);
 $BookPicker-accent: mat-palette($md-custom2);
 
@@ -157,15 +191,25 @@ $BookPicker-theme: mat-light-theme((
     warn: $BookPicker-warn,
   )
 ));
-$alternate-primary: mat-palette($md-custom3);
-$alternate-accent: mat-palette($md-custom2);
-$alternate-warn: mat-palette($mat-red);
+$toolbar-primary: mat-palette($md-custom3);
+$toolbar-accent: mat-palette($md-custom2);
+$toolbar-warn: mat-palette($mat-red);
 
-$alternate-theme: mat-light-theme((
+$toolbar-theme: mat-light-theme((
   color: (
-    primary: $alternate-primary,
-    accent: $alternate-accent,
-    warn: $alternate-warn,
+    primary: $toolbar-primary,
+    accent: $toolbar-accent,
+    warn: $toolbar-warn,
+  )
+));
+$button-primary: mat-palette($custom);
+$button-accent: mat-palette($md-custom4);
+$button-warn: mat-palette($mat-red);
+$button-theme: mat-light-theme((
+  color: (
+    primary: $button-primary,
+    accent: $button-accent,
+    warn: $button-warn,
   )
 ));
 
@@ -173,7 +217,8 @@ $alternate-theme: mat-light-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($BookPicker-theme);
-@include mat-toolbar-theme($alternate-theme);
+@include mat-toolbar-theme($toolbar-theme);
+@include mat-button-theme($button-theme);
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

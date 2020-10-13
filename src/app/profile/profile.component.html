@@ -1,6 +1,21 @@
-<div fxLayout="column" fxFill fxLayoutAlign="space-around center">
-  <button class="buttons" mat-flat-button color='primary' routerLink="/select-genre">Select genres</button>
-  <button class="buttons" mat-flat-button color='primary' routerLink="/location">Change Location</button>
-  <button class="buttons" mat-flat-button color='primary' routerLink="/login" (click)="log_out()">Log out</button>
-  <button class="buttons" mat-flat-button color='primary' routerLink="/location" (click)="clear()">Clear stored local Data</button>
+<div fxLayout="row">
+  <div fxFlex.lg="17" fxFlex.xs="5"></div>
+  <div fxFlex.lg="80" fxFlex.xs="90" fxLayout="column" class="main_container">
+    <div fxLayout="column" fxLayoutAlign="start center">
+      <div fxLayout="row" class="w-100" fxLayoutAlign="center">
+        <img fxFlex="10" fxFlex.xs="30" class="profile_img" src="../../assets/images/profile.png">
+      </div>
+      <span class="nickname font">#{{nickname}}</span>
+    </div>
+    <div class="buttons_container" fxLayout="column">
+      <button class="buttons font" mat-flat-button color='accent' routerLink="/location">Change Location</button>
+      <button class="buttons font" mat-flat-button color='accent' routerLink="/select-genre">Edit Genre</button>
+      <button class="buttons font" mat-flat-button color='accent' routerLink="/select-genre">Edit Nickmame</button>
+      <button class="buttons font" mat-flat-button color='warn' routerLink="/login" (click)="log_out()">Log out</button>
+    </div>
+    <span class="legal font">Legal</span>
+    <button class="buttons font" mat-flat-button color='accent'>Application Version: 0.0.1</button>
+    <button class="buttons font" mat-flat-button color='accent'>Privacy Policy</button>
+    <button class="buttons font" mat-flat-button color='accent'>Terms And Conditions</button>
+  </div>
 </div>

@@ -8,16 +8,15 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
+  nickname
   constructor(public router : Router) { }
 
   ngOnInit(): void {
+    this.nickname = localStorage.getItem('nickname')
   }
   log_out() {
     localStorage.setItem('logOut', 'true')
     localStorage.setItem('number','')
-  }
-  clear() {
-    localStorage.clear()
   }
 
 }
