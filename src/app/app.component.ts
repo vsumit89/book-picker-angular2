@@ -7,6 +7,7 @@ import { GlobalVar } from './global-var';
 
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
+import { Meta } from '@angular/platform-browser';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -17,27 +18,25 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnInit, OnDestroy {
   title ='BookPicker'
   @ViewChild('sidenav') sidenav: MatSidenav;
+  scrollContainer: any;
   close() {
     this.opened = false
   }
   sidenav_toggle() {
     this.sidenav.toggle();
-    if(this.overlay === true) {
-      this.overlay = false
-    } else {
-      this.overlay = true
-    }
+    if (this.sidenav.opened) {
+      this.backdrop = true
+    } else {this.backdrop = false}
     console.log("clicked");
   }
   color;
   nav_bar = true;
-  PageHeight;
   sidenav_visible;
   url;
   scrHeight:any
   scrWidth:any
-  overlay = false
-  min_height
+
+  backdrop = false
 
   nickname;
   login_button;
@@ -48,7 +47,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize',['$event'])
   onresize(event){
-    console.log(window.innerHeight)
     if(this.scrWidth != window.innerWidth){
       this.fix_height();
     }
@@ -57,9 +55,14 @@ export class AppComponent implements OnInit, OnDestroy {
     this.scrWidth = window.innerWidth
     this.scrHeight = window.innerHeight
     console.log(this.scrHeight,this.scrWidth)
-    this.min_height = this.scrHeight
+    this.metaService.updateTag({
+      name: 'viewport',
+      content: `height=${this.scrHeight}, width=device-width, initial-scale=1.0`
+    },
+      `name='viewport'`
+    );
   }
-  constructor(public router: Router, public gv: GlobalVar, public mo: MediaObserver, public authservice: AuthService) { 
+  constructor(public router: Router, private metaService : Meta, public gv: GlobalVar, public mo: MediaObserver, public authservice: AuthService) { 
     
   }
   IsLoggedIn() {
@@ -69,7 +72,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.nickname = localStorage.getItem('nickname');
   }
   ngOnInit() {
-    this.fix_height()
+    this.fix_height();
     if (localStorage.getItem('IsLoggedIn') === null || localStorage.getItem('IsLoggedIn') === "undefined") {
       this.router.navigate(['/home'])
     } else {
@@ -107,6 +110,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   RouterAction() {
+    this.backdrop = false
+    window.scroll(0,0)
     this.current_url = this.router.url;
     if (this.current_url === '/home') {
       this.IsLoggedIn()

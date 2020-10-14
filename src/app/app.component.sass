@@ -25,24 +25,23 @@
 .w-40
     width: 40%
 .side-nav
-    box-shadow: none !important
     margin-top: 64px
+    box-shadow: none !important
     position: fixed
-.side-nav-xs 
+    z-index: 1
+.side-nav-xs
     margin-top: 48px
 #scrollframe
-    margin-top: 64px
+    z-index: -1
     overflow: visible
 .side-nav-container
     overflow: visible
-.main-container
-    overflow: scroll
 .overlay
+    z-index: 1
     position: fixed
-    z-index: 3
-    background-color: rgba(0,0,0,0.5)
     top: 0
-    bottom: 0
     right: 0
     left: 0
+    bottom: 0
+    background: rgba(0, 0, 0, 0.7)
 
