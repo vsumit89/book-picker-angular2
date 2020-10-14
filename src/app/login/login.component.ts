@@ -24,7 +24,6 @@ interface City {
 export class LoginComponent implements OnInit {
 
   bar = false;
-  @Input() display;
   otp_sent : boolean = false;
   windowRef : any;
   otp: string;
@@ -50,8 +49,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem('logOut') ==='true'){
       firebase.auth().signOut();
-      localStorage.removeItem('IsLoggedIn')
-      localStorage.removeItem('logOut')
+      localStorage.clear()
     }
     if (localStorage.getItem('IsLoggedIn') ===null || localStorage.getItem('IsLoggedIn') === 'undefined') {
     }else {
