@@ -59,8 +59,8 @@ firebase.initializeApp(environment.firebaseConfig);
     AddBookComponent,
     YourBooksComponent,
     SettingsComponent,
+    BookDialogComponent,
   ],
-  entryComponents:[BookDialogComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,

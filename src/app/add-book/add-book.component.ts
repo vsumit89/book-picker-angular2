@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { from } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Book } from '../book';
-import { FormGroup, FormBuilder,FormControl } from '@angular/forms';
+import { BreakpointObserver, Breakpoints,BreakpointState } from '@angular/cdk/layout';
+import { FormGroup, FormBuilder,FormControl, Validators } from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { GetBookService } from '../services/get-book.service';
 import { GlobalBooks } from '../global-books';
 import { MatDialog } from '@angular/material/dialog';
 import { BookDialogComponent } from '../book-dialog/book-dialog.component';
+
 
 interface Genre{
   value: string;
@@ -19,15 +21,19 @@ interface Genre{
 })
 export class AddBookComponent implements OnInit {
   isbn : string;
-  bookName : string;
-  edition : number;
-  author : string;
+  title : string;
+  authors :[];
   genre : string;
-  opinion: string;
+  description: string;
+  imageLinks: string;
   mobile: string;
-  Show: boolean;
+  search_keyword: string;
   items;
+  rating;
   display = false;
+  volumeInfo;
+  selectedBookByUser;
+  isExtraSmall: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.XSmall);
   genres: Genre[] = [
     {value: 'Biography', viewValue: 'Biography'},
     {value: 'Romantic', viewValue: 'Romantic'},
@@ -42,10 +48,12 @@ export class AddBookComponent implements OnInit {
   bookDetails: FormGroup= new FormGroup({});
   book: FormGroup= new FormGroup({})
   public newbookDetails: Book = new Book();
+  BreakpointObserver: any;
   constructor(
+    private breakpointObserver: BreakpointObserver,
     public _fb: FormBuilder,
     public _http: HttpClient,
-    public  bookService: GetBookService,
+    public bookService: GetBookService,
     public gb: GlobalBooks,
     public dialog : MatDialog
     ){  }  
@@ -54,19 +62,24 @@ export class AddBookComponent implements OnInit {
   }
 
   getBookFuction(){
-    this.bookService.GetBooks(this.isbn).subscribe(response => {
-      // const books = JSON.parse(JSON.stringify(response));
-      // this.items = books.items
+    this.bookService.GetBooks(this.search_keyword).subscribe(response => {
       const dialogRef = this.dialog.open(BookDialogComponent, {
-        data:{data:response}
-        });
+        width: '750px',
+        height : 'auto',
+        data:{data:response},
+        autoFocus:false,
+        });        
         dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+        this.selectedBookByUser = result;
+        this.display= true;
+        if (this.selectedBookByUser.volumeInfo.averageRating >=0.1){
+          this.rating = this.selectedBookByUser.volumeInfo.averageRating
+        }
       });
 
     });
     
-  }z
+  }
   SelectOption(genre){this.genre=genre;}
   
   addBookToLibrary(){
@@ -74,11 +87,12 @@ export class AddBookComponent implements OnInit {
       mobile: ['100'],
       book: this._fb.group({
          isbn:[this.isbn],
-         bookName:[this.bookName],
-         author:[this.author],
-         edition:[this.edition],
+         title:[this.title],
+         authors:[this.authors],
          genre:[this.genre],
-         opinion:[this.opinion]
+         description:[this.description],
+         rating : [this.selectedBookByUser.volumeInfo.averageRating],
+         imageLinks:[this.selectedBookByUser.volumeInfo.imageLinks.thumbnail]
       })
     })
 

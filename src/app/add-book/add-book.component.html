@@ -4,79 +4,80 @@
     <div fxFlex="83" fxFlex.xs="90" fxLayout="column" >
         <div fxFlex="20" class="a-d-ttl" [ngStyle.xs]="{'margin-top':'0.9em'}">Add Book</div>
         <div fxLayout="row" fxLayout.xs="row">
-            <div fxFlex="12" fxFlex.xs="30" fxLayoutAlign="start start"><img class="img-fluid book-image"
-                    src="../../assets/images/book.svg"></div>
+            <div fxFlex="12" fxFlex.xs="30" fxLayoutAlign="start start">
+                <img *ngIf="display" class="img-fluid book-image" src='{{ selectedBookByUser.volumeInfo.imageLinks.thumbnail }}' >
+                <img *ngIf="!display" class="img-fluid book-image" src="../../assets/images/book.svg">
+
+                </div>
             <div fxFlex="4"></div>
             <div fxFlex="32" fxFlex.xs="70" fxLayout="column">
                 <div fxFlex="15"> </div>
-                <div fxFlex="10" class="t-b1-ttl" >Enter ISBN of book</div>
+                <div fxFlex="10" class="t-b1-ttl" >Search your book</div>
                 <div fxFlex="5"></div>
                 <div fxFlex="14" fxFlex.xs="20">
-                    <input class="tx-b" [(ngModel)]="isbn"  type="text" placeholder="ISBN of your book" required>
+                    <input class="tx-b"  type="text" [(ngModel)]="search_keyword"  placeholder="ISBN / Title / Author" >
                 </div>
                 <div fxFlex="10"></div>
                 <div fxFlex="15"> <button class="btn-search" (click)="getBookFuction()" mat-flat-button color="primary">Search</button></div>
-                <div fxFlex="10"></div>
-                <!-- <div *ngIf="display">
-                    <div *ngFor="let item of items">
-                        {{ item.volumeInfo.title }}
-                    </div>
-                </div> -->
-                <div fxFlex="10" fxLayout="row">
-                    <span fxFlex="6" fxFlex.xs="10" style="font-family:roboto;" fxLayoutAlign="start center">4.5</span>
+                <div fxFlex="10"></div> 
+                <div fxFlex="10" fxLayout="row" *ngIf="rating">
+                    <span fxFlex="4" fxFlex.xs="5" style="font-family:roboto;" fxLayoutAlign="start center">{{ selectedBookByUser.volumeInfo.averageRating }}</span>
                     <span fxFlex="4" fxFlex.xs="5" fxLayoutAlign="center center" style="padding-top: 0.6em;"> <mat-icon class="list-icons star-icon" >star_rate</mat-icon> </span>
                 </div>
             </div>
 
         </div>
         
-        <div fxLayout="row" fxLayout.xs="column" [ngStyle.lg]="{'margin-top':'2em'}" >
-            <div fxFlex="16" fxHide.xs></div>
-
-            <div fxFlex="32" fxFlex.xs="60" fxLayout="column">
-                <div fxFlex="40" class="t-b2-ttl" ngClass.xs="spacing-xs" >Name</div>
-                <div fxFlex="42">
-                    <input class="tx-b" [(ngModel)]="bookName" type="text" placeholder="Name of book" required>
+        <div *ngIf="selectedBookByUser" >
+            <div fxLayout="row" fxLayout.xs="column" [ngStyle.lg]="{'margin-top':'2em'}" >
+                <div fxFlex="16" fxHide.xs></div>
+    
+                <div fxFlex="32" fxFlex.xs="60" fxLayout="column">
+                    <div fxFlex="40" class="t-b2-ttl" ngClass.xs="spacing-xs" >Name</div>
+                    <div fxFlex="42">
+                        <input class="tx-b" id="title" [(ngModel)]="title" name="title" type="text" value='{{selectedBookByUser.volumeInfo.title}}' 
+                        placeholder="Name of book" required>
+                    </div>
+                    <div fxFlex="40" class="t-b2-ttl" ngClass.xs="spacing-xs">ISBN</div>
+                    <div fxFlex="60">
+                        <input class="tx-b" [(ngModel)]="isbn" type="number" placeholder="Enter ISBN of your book" required>
+                    </div>
+    
+    
+                    <div fxFlex="40" class="t-b2-ttl" ngClass.xs="spacing-xs">Author</div>
+                    <div fxFlex="42">
+                        <input class="tx-b" [(ngModel)]="authors" type="text" value="{{ selectedBookByUser.volumeInfo.authors }}"  placeholder="Name of author" required>
+                    </div>
                 </div>
-                <div fxFlex="40" class="t-b2-ttl" ngClass.xs="spacing-xs">Edition</div>
-                <div fxFlex="60">
-                    <input class="tx-b" [(ngModel)]="edition" type="number" placeholder="Enter digit of edition" required>
-                </div>
-
-
-                <div fxFlex="40" class="t-b2-ttl" ngClass.xs="spacing-xs">Author</div>
-                <div fxFlex="42">
-                    <input class="tx-b" [(ngModel)]="author" type="text" placeholder="Name of author" required>
+                <div fxFlex="4" fxHide.xs></div>
+                <div fxFlex="32" fxFlex.xs="60" fxLayout="column" >
+                    <div fxFlex="9" fxFlex.xs="20" class="t-b2-ttl" ngClass.xs="spacing-xs">Genre</div>
+    
+                    <div fxFlex="14.5" fxFlex.xs="70">
+                        <select  id="genre" (change)="SelectOption($event.target.value)" class="tx-b2"  >
+                            <option selected="selected" value="Select genre" disabled="disabled">Select genre</option>
+                            <option *ngFor="let genre of genres" value={{genre.value}}>{{genre.value}}</option>
+                        </select>
+                    </div>
+                    <div fxFlex="3"></div>
+    
+                    <div fxFlex="9" fxFlex.xs="15" class="t-b2-ttl" ngClass.xs="spacing-xs">Description of book</div>
+    
+                    <div fxFlex="48" fxFlex.xs="90">
+                        <textarea class="tx-b1" [ngStyle]="{'height':'100%'}" id="description"  [(ngModel)]="description" required
+                            placeholder="Tell us what you liked about this book " value='{{ selectedBookByUser.volumeInfo.description }}'></textarea>
+                    </div>
+    
+    
                 </div>
             </div>
-            <div fxFlex="4" fxHide.xs></div>
-            <div fxFlex="32" fxFlex.xs="60" fxLayout="column" >
-                <div fxFlex="9" fxFlex.xs="20" class="t-b2-ttl" ngClass.xs="spacing-xs">Genre</div>
-
-                <div fxFlex="14.5" fxFlex.xs="70">
-                    <select  id="genre" (change)="SelectOption($event.target.value)" class="tx-b2"  >
-                        <option selected="selected" value="Select genre" disabled="disabled">Select genre</option>
-                        <option *ngFor="let genre of genres" value={{genre.value}}>{{genre.value}}</option>
-                    </select>
-                </div>
-                <div fxFlex="3"></div>
-
-                <div fxFlex="9" fxFlex.xs="15" class="t-b2-ttl" ngClass.xs="spacing-xs">Your opinion</div>
-
-                <div fxFlex="48" fxFlex.xs="60">
-                    <textarea class="tx-b1" [ngStyle]="{'height':'100%'}" id="opinion" [(ngModel)]="opinion" required
-                        placeholder="Tell us what you liked about this book"></textarea>
-                </div>
-
-
+            
+            <div fxLayout="row" style="margin-top: 1.8em;">
+                <div fxFlex="78"></div>
+                <div><button mat-flat-button type="reset"  class="btn-cancel">Cancel</button></div>
+                <div fxFlex="2"></div>
+                <div><button mat-flat-button type="submit" color="primary" (click)="addBookToLibrary()" class="btn-add">Add</button></div>
             </div>
-        </div>
-        
-        <div fxLayout="row" style="margin-top: 1.8em;">
-            <div fxFlex="78"></div>
-            <div><button mat-flat-button type="reset"  class="btn-cancel">Cancel</button></div>
-            <div fxFlex="2"></div>
-            <div><button mat-flat-button type="submit" color="primary" (click)="addBookToLibrary()" class="btn-add">Add</button></div>
         </div>
     </div>
 
