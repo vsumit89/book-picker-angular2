@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { GlobalVar } from '../global-var';
 
 export class WindowService {
 
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit {
   ];
 
 
-  constructor( private route : Router, public authService : AuthService, public _http : HttpClient) {
+  constructor( private route : Router, public authService : AuthService, public _http : HttpClient, public gv : GlobalVar) {
 
    }
 
@@ -65,14 +66,15 @@ export class LoginComponent implements OnInit {
       window.alert("please enter valid number")
       return
     }
-    this.bar = true
+    this.gv.bar = true
+    console.log(this.gv.bar)
     const appVerifier = this.windowRef.recaptchaVerifier;
     await this.authService.SendOtp('+91'+this.number, appVerifier);
     if (this.authService.windowRef.confirmationResult){
       this.otp_sent = true;
-      this.bar = false
+      this.gv.bar = false
     } else {
-      this.bar = false
+      this.gv.bar = false
     }
   }
   async VerifyOtp() {
@@ -80,10 +82,10 @@ export class LoginComponent implements OnInit {
       window.alert("please enter valid number")
       return
     }
-    this.bar = true
+    this.gv.bar = true
     await this.authService.VerifyOtp(this.otp);
     if (this.authService.loggedIn === true ) {
-      this.bar = false
+      this.gv.bar = false
       this.nick_div = true
       localStorage.setItem('number', this.number)
     }
