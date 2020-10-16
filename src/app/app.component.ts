@@ -18,7 +18,6 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnInit, OnDestroy {
   title ='BookPicker'
   @ViewChild('sidenav') sidenav: MatSidenav;
-  scrollContainer: any;
   close() {
     this.opened = false
   }
@@ -33,8 +32,10 @@ export class AppComponent implements OnInit, OnDestroy {
   nav_bar = true;
   sidenav_visible;
   url;
+  pageHeight = 93
   scrHeight:any
   scrWidth:any
+  minHeight
 
   backdrop = false
 
@@ -55,14 +56,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.scrWidth = window.innerWidth
     this.scrHeight = window.innerHeight
     console.log(this.scrHeight,this.scrWidth)
-    this.metaService.updateTag({
-      name: 'viewport',
-      content: `height=${this.scrHeight}, width=device-width, initial-scale=1.0`
-    },
-      `name='viewport'`
-    );
+    this.minHeight = this.scrHeight
   }
-  constructor(public router: Router, private metaService : Meta, public gv: GlobalVar, public mo: MediaObserver, public authservice: AuthService) { 
+  constructor(public router: Router, public gv: GlobalVar, public mo: MediaObserver, public authservice: AuthService) { 
     
   }
   IsLoggedIn() {
@@ -110,6 +106,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   RouterAction() {
+    this.pageHeight = 93
     this.backdrop = false
     window.scroll(0,0)
     this.current_url = this.router.url;
@@ -134,6 +131,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.sidenav_visible = false;
       } else
         if (this.current_url === '/login') {
+          this.pageHeight = 100
           this.nickname = ''
           this.login_button = false
           this.menu_icon = false;
@@ -141,7 +139,8 @@ export class AppComponent implements OnInit, OnDestroy {
           this.nav_bar = false;
           this.sidenav_visible = false;
         } else
-          if (this.current_url === '/location') {
+          if (this.current_url === '/location') { 
+            this.pageHeight = 100
             this.IsLoggedIn()
             this.menu_icon = false;
             this.color = "accent";

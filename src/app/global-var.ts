@@ -6,5 +6,5 @@ export class GlobalVar {
     deviceSm: boolean = false;
     deviceMd: boolean = false;
     token: string;
-    items;
+    bar: boolean = false
 }
