@@ -28,39 +28,45 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.router.url === '/home') {this.disableHome()}
-    if (this.router.url === '/home/add-book') {this.disableAddBook()}
-    if (this.router.url === '/home/profile') {this.disableProfile()}
-    if (this.router.url === '/home/your-books') {this.disableYourBooks()}
-    if (this.router.url === '/home/settings') {this.disableSettings()}
+    if (this.router.url === '/add-book') {this.disableAddBook()}
+    if (this.router.url === '/profile') {this.disableProfile()}
+    if (this.router.url === '/my-books') {this.disableMyBooks()}
+    if (this.router.url === '/chats') {this.disableChats()}
+    if (this.router.url === '/notifications') {this.disableNotifications()}
   }
   disableAddBook() {
     this.style[0].disabled = true
     this.style[0].style = {'background': 'rgba(97,89,229,0.65)'}
-    this.style[2]= this.style[3]= this.style[4]= this.style[5]= this.style[1] = {disabled : false, style : {}}
+    this.style[2]= this.style[3]= this.style[4]= this.style[5]= this.style[1] = this.style[6]= {disabled : false, style : {}}
   }
   disableHome() {
     this.style[1].disabled = true
     this.style[1].style = {'background': '#EAEAEA'}
-    this.style[2]= this.style[3]= this.style[4]= this.style[5]= this.style[0] = {disabled : false, style : {}}
+    this.style[2]= this.style[3]= this.style[4]= this.style[5]= this.style[0] = this.style[6]= {disabled : false, style : {}}
   }
   disableSearch() {
     this.style[2].disabled = true
     this.style[2].style = {'background': '#EAEAEA'}
-    this.style[1]= this.style[3]= this.style[4]= this.style[5]= this.style[0] = {disabled : false, style : {}}
+    this.style[1]= this.style[3]= this.style[4]= this.style[5]= this.style[0] = this.style[6] = {disabled : false, style : {}}
   }
-  disableYourBooks() {
+  disableMyBooks() {
     this.style[3].disabled = true
     this.style[3].style = {'background': '#EAEAEA'}
-    this.style[2]= this.style[1]= this.style[4]= this.style[5]= this.style[0] = {disabled : false, style : {}}
+    this.style[2]= this.style[1]= this.style[4]= this.style[5]= this.style[0] = this.style[6] = {disabled : false, style : {}}
   }
   disableProfile() {
     this.style[4].disabled = true
     this.style[4].style = {'background': '#EAEAEA'}
-    this.style[2]= this.style[3]= this.style[1]= this.style[5]= this.style[0] = {disabled : false, style : {}}
+    this.style[2]= this.style[3]= this.style[1]= this.style[5]= this.style[0] = this.style[6] = {disabled : false, style : {}}
   }
-  disableSettings() {
+  disableChats() {
     this.style[5].disabled = true
     this.style[5].style = {'background': '#EAEAEA'}
-    this.style[2]= this.style[3]= this.style[4]= this.style[1]= this.style[0] = {disabled : false, style : {}}
+    this.style[2]= this.style[3]= this.style[4]= this.style[1]= this.style[0] = this.style[6] = {disabled : false, style : {}}
+  }
+  disableNotifications() {
+    this.style[6].disabled = true
+    this.style[6].style = {'background': '#EAEAEA'}
+    this.style[2]= this.style[3]= this.style[4]= this.style[1]= this.style[0] = this.style[5] = {disabled : false, style : {}}
   }
 }

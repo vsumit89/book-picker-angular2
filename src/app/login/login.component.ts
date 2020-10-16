@@ -24,7 +24,6 @@ interface City {
 export class LoginComponent implements OnInit {
 
   bar = false;
-  @Input() display;
   otp_sent : boolean = false;
   windowRef : any;
   otp: string;
@@ -34,7 +33,6 @@ export class LoginComponent implements OnInit {
   nick_div = false;
 
   win = new WindowService();
-  width = window.innerWidth;
   cities: City[] = [
     // {value: 'Select City', viewValue: 'Select City'},
     {value: 'Aurangabad', viewValue: 'Aurangabad'},
@@ -51,16 +49,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem('logOut') ==='true'){
       firebase.auth().signOut();
-      localStorage.removeItem('IsLoggedIn')
-      localStorage.removeItem('logOut')
+      localStorage.clear()
     }
     if (localStorage.getItem('IsLoggedIn') ===null || localStorage.getItem('IsLoggedIn') === 'undefined') {
     }else {
       this.route.navigate(['/home'])
     }
-    if( this.width<1200 ) {
-      this.display = true;
-    }else { this.display = false ;}
     this.windowRef = this.win.windowRef
     this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {'size':"invisible"})
 

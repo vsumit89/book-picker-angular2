@@ -1,49 +1,51 @@
-<mat-progress-bar *ngIf="bar" mode="indeterminate" color="primary" ngClass.lg="lgBar" class="bar"></mat-progress-bar>
-<div fxLayout="row" fxFlexFill class="flex-contain">
-  <div class="left" fxHide.xs fxLayout="column" fxFlex="45">
-    <div fxLayout="row" fxFlex="5"></div>
-    <div fxLayout="row" fxFlex="90">
-      <img class="logo-left img-fluid" src="../../assets/images/Group 38.svg">
-    </div>
-    <div fxLayout="row" fxFlex="5"></div>
-  </div>
-  <div class="right" fxFlex="55" fxFlex.xs="100" fxLayout="column" ngClass.xs="bg-img">
-    <div fxLayout fxFlex="15" fxLayoutAlign="end center" fxShow fxHide.xs class="logo-container">
-      <img class="img-fluid logo" src="../../assets/images/book-picker-logo.svg">
-    </div>
-    <div fxFlex.xs="4" fxFlex="15"></div>
-    <div fxFlex="60" fxLayout="row">
-      <div fxHide fxShow.xs fxFlex="6"></div>
-      <div fxFlex="94" fxLayout="column" fxLayoutGap.xs="6%" fxLayoutGap="4%">
-        <div fxLayout="row" fxLayoutAlign="start end" fxFlex.xs="7" fxFlex="10">
-          <span *ngIf="!otp_sent && !nick_div" class="text">Login through phone</span>
-          <span *ngIf="otp_sent && !nick_div" class="text">Enter OTP</span>
-          <span  *ngIf="nick_div" class="text">Nickname</span>
-        </div>
-        <div fxLayout="row" fxFlex.xs="9" fxFlex="10">
-          <input *ngIf="!otp_sent && !nick_div" [(ngModel)]="number" maxlength="10" fxFlex.xs="93" fxFlex="70" class="phone"
-            type="text" placeholder="Enter your phone number">
-          <input *ngIf="otp_sent && !nick_div" [(ngModel)]="otp" maxlength="6" fxFlex.xs="93" fxFlex="70" class="phone" type="text"
-            placeholder="Enter OTP">
-          <input  *ngIf="nick_div" [(ngModel)]="nickname" fxFlex.xs="93" fxFlex="70" class="phone" type="text"
-            placeholder="Enter a nickname for you">
-        </div>
-        <div fxLayout="row" fxFlex.xs="9" fxFlex="10">
-          <div [hidden]="true" id="recaptcha-container"></div>
-          <button *ngIf="!otp_sent && !nick_div" mat-flat-button color="primary" (click)="SendOtp()" class="buttons">Get OTP</button>
-          <button *ngIf="otp_sent && !nick_div" mat-flat-button color="primary" (click)="VerifyOtp()" class="buttons">Verify
-            OTP</button>
-          <button *ngIf="nick_div" mat-flat-button color="primary" (click)="setNickname()" class="buttons">Next</button>
-        </div>
-        <div fxFlex>
-        </div>
+<div fxFill>
+  <mat-progress-bar *ngIf="bar" mode="indeterminate" color="primary" ngClass.lg="lgBar" class="bar"></mat-progress-bar>
+  <div fxLayout="row" fxFlexFill class="flex-contain">
+    <div class="left" fxHide.xs fxLayout="column" fxFlex="45">
+      <div fxLayout="row" fxFlex="5"></div>
+      <div fxLayout="row" fxFlex="90">
+        <img class="logo-left img-fluid" src="../../assets/images/Group 38.svg">
       </div>
-
+      <div fxLayout="row" fxFlex="5"></div>
     </div>
-    <div fxLayout="row" fxLayoutAlign="start end" fxFlex class="tagline"
-      [ngStyle.xs]="{'margin':'0 auto 3% auto','font-size':'1.1em'}">
-      You love to <span class="blue">&nbsp;read&nbsp;</span>| We love to <span class="blue">&nbsp;share</span>
+    <div class="right" fxFlex="55" fxFlex.xs="100" fxLayout="column" ngClass.xs="bg-img">
+      <div fxLayout fxFlex="15" fxLayoutAlign="end center" fxShow fxHide.xs class="logo-container">
+        <img class="img-fluid logo" src="../../assets/images/book-picker-logo.svg">
+      </div>
+      <div fxFlex.xs="4" fxFlex="15"></div>
+      <div fxFlex="60" fxLayout="row">
+        <div fxHide fxShow.xs fxFlex="6"></div>
+        <div fxFlex="94" fxLayout="column" fxLayoutGap.xs="6%" fxLayoutGap="4%">
+          <div fxLayout="row" fxLayoutAlign="start end" fxFlex.xs="7" fxFlex="10">
+            <span *ngIf="!otp_sent && !nick_div" class="text">Login through phone</span>
+            <span *ngIf="otp_sent && !nick_div" class="text">Enter OTP</span>
+            <span  *ngIf="nick_div" class="text">Nickname</span>
+          </div>
+          <div fxLayout="row" fxFlex.xs="9" fxFlex="10">
+            <input *ngIf="!otp_sent && !nick_div" [(ngModel)]="number" maxlength="10" fxFlex.xs="93" fxFlex="70" class="phone"
+              type="text" placeholder="Enter your phone number">
+            <input *ngIf="otp_sent && !nick_div" [(ngModel)]="otp" maxlength="6" fxFlex.xs="93" fxFlex="70" class="phone" type="text"
+              placeholder="Enter OTP">
+            <input  *ngIf="nick_div" [(ngModel)]="nickname" fxFlex.xs="93" fxFlex="70" class="phone" type="text"
+              placeholder="Enter a nickname for you">
+          </div>
+          <div fxLayout="row" fxFlex.xs="9" fxFlex="10">
+            <div [hidden]="true" id="recaptcha-container"></div>
+            <button *ngIf="!otp_sent && !nick_div" mat-flat-button color="primary" (click)="SendOtp()" class="buttons">Get OTP</button>
+            <button *ngIf="otp_sent && !nick_div" mat-flat-button color="primary" (click)="VerifyOtp()" class="buttons">Verify
+              OTP</button>
+            <button *ngIf="nick_div" mat-flat-button color="primary" (click)="setNickname()" class="buttons">Next</button>
+          </div>
+          <div fxFlex>
+          </div>
+        </div>
+  
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start end" fxFlex class="tagline"
+        [ngStyle.xs]="{'margin':'0 auto 3% auto','font-size':'1.1em'}">
+        You love to <span class="blue">&nbsp;read&nbsp;</span>| We love to <span class="blue">&nbsp;share</span>
+      </div>
+  
     </div>
-
   </div>
-</div>
+  </div>

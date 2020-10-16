@@ -24,15 +24,19 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   sidenav_toggle() {
     this.sidenav.toggle();
+    if (this.sidenav.opened) {
+      this.backdrop = true
+    } else {this.backdrop = false}
     console.log("clicked");
   }
   color;
   nav_bar = true;
-  PageHeight;
   sidenav_visible;
   url;
   scrHeight:any
   scrWidth:any
+
+  backdrop = false
 
   nickname;
   login_button;
@@ -44,7 +48,7 @@ export class AppComponent implements OnInit, OnDestroy {
   @HostListener('window:resize',['$event'])
   onresize(event){
     if(this.scrWidth != window.innerWidth){
-      // this.fix_height();
+      this.fix_height();
     }
   }
   fix_height(){
@@ -68,8 +72,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.nickname = localStorage.getItem('nickname');
   }
   ngOnInit() {
-    this.scrollContainer = document.getElementById('scrollframe')
-    // this.fix_height();
+    this.fix_height();
     if (localStorage.getItem('IsLoggedIn') === null || localStorage.getItem('IsLoggedIn') === "undefined") {
       this.router.navigate(['/home'])
     } else {
@@ -107,7 +110,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   RouterAction() {
-    document.getElementById('scrollframe').scroll(0,0)
+    this.backdrop = false
+    window.scroll(0,0)
     this.current_url = this.router.url;
     if (this.current_url === '/home') {
       this.IsLoggedIn()
@@ -118,7 +122,6 @@ export class AppComponent implements OnInit, OnDestroy {
       this.color = "primary";
       this.sidenav_visible = true;
       this.nav_bar = true;
-      this.PageHeight = "93";
       if (this.gv.deviceLg) {
         this.opened = true;
       }
@@ -137,7 +140,6 @@ export class AppComponent implements OnInit, OnDestroy {
           this.color = "accent";
           this.nav_bar = false;
           this.sidenav_visible = false;
-          this.PageHeight = "100";
         } else
           if (this.current_url === '/location') {
             this.IsLoggedIn()
@@ -145,9 +147,8 @@ export class AppComponent implements OnInit, OnDestroy {
             this.color = "accent";
             this.nav_bar = false;
             this.sidenav_visible = false;
-            this.PageHeight = "100";
           } else
-          if (this.current_url === '/profile') {
+          if (this.current_url === '/profile' || this.current_url === '/add-book' || this.current_url === '/my-books' || this.current_url === '/chats' || this.current_url === '/notifications') {
             this.IsLoggedIn()
             if (this.gv.deviceXs){
               this.close()
@@ -156,12 +157,11 @@ export class AppComponent implements OnInit, OnDestroy {
             this.color = "primary";
             this.nav_bar = true;
             this.sidenav_visible = true;
-            this.PageHeight = "93";
             if (this.gv.deviceLg) {
               this.opened = true;
             }
           }else
-          if (this.current_url === '/your-books') {
+          if (this.current_url === '/home/book-info' || this.current_url === '/my-books/book-info') {
             this.IsLoggedIn()
             if (this.gv.deviceXs){
               this.close()
@@ -170,49 +170,6 @@ export class AppComponent implements OnInit, OnDestroy {
             this.color = "primary";
             this.nav_bar = true;
             this.sidenav_visible = true;
-            this.PageHeight = "93";
-            if (this.gv.deviceLg) {
-              this.opened = true;
-            }
-          }else
-          if (this.current_url === '/add-book') {
-            this.IsLoggedIn()
-            if (this.gv.deviceXs){
-              this.close()
-            }
-            this.menu_icon = true;
-            this.color = "primary";
-            this.nav_bar = true;
-            this.sidenav_visible = true;
-            this.PageHeight = "93";
-            if (this.gv.deviceLg) {
-              this.opened = true;
-            }
-          } else
-          if (this.current_url === '/settings') {
-            this.IsLoggedIn()
-            if (this.gv.deviceXs){
-              this.close()
-            }
-            this.menu_icon = true;
-            this.color = "primary";
-            this.nav_bar = true;
-            this.sidenav_visible = true;
-            this.PageHeight = "93";
-            if (this.gv.deviceLg) {
-              this.opened = true;
-            }
-          }else
-          if (this.current_url === '/home/book-info' || this.current_url === '/your-books/book-info') {
-            this.IsLoggedIn()
-            if (this.gv.deviceXs){
-              this.close()
-            }
-            this.menu_icon = true;
-            this.color = "primary";
-            this.nav_bar = true;
-            this.sidenav_visible = true;
-            this.PageHeight = "93";
             if (this.gv.deviceLg) {
               this.opened = true;
             }

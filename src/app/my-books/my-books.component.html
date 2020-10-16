@@ -1,0 +1,17 @@
+<div fxFill fxLayout="row">
+    <div fxFlex.lg="17" fxFlex.xs="5"></div>
+    <div fxFlex.lg="80" fxFlex.xs="90" fxLayout="column">
+      <div fxLayout="row">
+        <span ngClass.xs="xs-margin-top" class="opening_text">Total {{size}}</span>
+      </div>
+      <div class="books_contain">
+        <div fxLayout="row" class="books_row" fxLayoutGap="3%" fxLayoutGap.xs="5%" *ngFor="let row of book_row" fxLayoutAlign="start start">
+          <div matRipple routerLink="/my-books/book-info" class="bookCard" *ngFor="let book of row " fxFlex="10" fxFlex.xs="30">
+              <img class="img-fluid" src="{{book.img_link}}">
+              <span class="book_title">{{book.title}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

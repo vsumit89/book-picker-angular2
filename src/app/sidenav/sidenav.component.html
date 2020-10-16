@@ -1,32 +1,47 @@
 <div fxFill fxLayout="row" fxLayoutAlign="start none">
   <div fxFlex="10"></div>
   <div fxLayout="column" class="w-100">
-  <div class="w-100" fxLayout="row" fxLayoutAlign="center none">
-    <div #trigger fxLayout="row" routerLink="/add-book" [matRippleDisabled]='style[0].disabled' [ngStyle]='style[0].style' (click)= 'disableAddBook()' fxLayoutAlign="none center" matRipple  class="w-100 ripple bg list b-r">
-      <mat-icon class="list-icons white ">add</mat-icon>
-      <span class="list-text white">Add Books</span>
+    <div class="w-100" fxLayout="row" fxLayoutAlign="center none">
+      <div #trigger fxLayout="row" routerLink="/add-book" [matRippleDisabled]='style[0].disabled'
+        [ngStyle]='style[0].style' (click)='disableAddBook()' fxLayoutAlign="none center" matRipple
+        class="w-100 ripple bg list b-r">
+        <mat-icon class="list-icons white ">add</mat-icon>
+        <span class="list-text white">Add Books</span>
+      </div>
     </div>
-  </div>
-  <div #trigger matRipple [matRippleDisabled]='style[1].disabled' [ngStyle]='style[1].style' routerLink="/home" (click)='disableHome()'  class="w-100 b-r ripple up-m" fxLayout="row" fxLayoutAlign="start center">
-    <mat-icon class="list-icons">home</mat-icon>
-    <span class="list-text">Home</span>
-  </div>
-  <div #trigger matRipple [matRippleDisabled]='style[2].disabled' [ngStyle]='style[2].style' routerLink="/home" (click)='disableSearch()' class="w-100 b-r ripple up-m" fxLayout="row" fxLayoutAlign="start center">
-    <mat-icon class="list-icons">search</mat-icon>
-    <span class="list-text">Search Book</span>
-  </div>
-  <div #trigger matRipple [matRippleDisabled]='style[3].disabled' [ngStyle]='style[3].style' routerLink="/your-books" (click)='disableYourBooks()' class="w-100 b-r ripple  up-m" fxLayout="row" fxLayoutAlign="start center">
-    <i class="list-icons material-icons-outlined">book</i>
-    <span class="list-text">Your Books</span>
-  </div>
-  <div #trigger matRipple [matRippleDisabled]='style[4].disabled' [ngStyle]='style[4].style' routerLink="/profile" (click)='disableProfile()' class="w-100 b-r ripple  up-m" fxLayout="row" fxLayoutAlign="start center">
-    <i class="list-icons material-icons-outlined">account_circle</i>
-    <span class="list-text">Profile</span>
-  </div>
-  <div #trigger matRipple [matRippleDisabled]='style[5].disabled' [ngStyle]='style[5].style' routerLink="/settings" (click)='disableSettings()' class="w-100 b-r ripple  up-m" fxLayout="row" fxLayoutAlign="start center">
-    <mat-icon class="list-icons">settings</mat-icon>
-    <span class="list-text">Settings</span>
-  </div>
+    <div #trigger matRipple [matRippleDisabled]='style[1].disabled' [ngStyle]='style[1].style' routerLink="/home"
+      (click)='disableHome()' class="w-100 b-r ripple up-m-home" fxLayout="row" fxLayoutAlign="start center">
+      <mat-icon class="list-icons">home</mat-icon>
+      <span class="list-text">Home</span>
+    </div>
+    <div #trigger matRipple [matRippleDisabled]='style[2].disabled' [ngStyle]='style[2].style' routerLink="/home"
+      (click)='disableSearch()' class="w-100 b-r ripple up-m" fxLayout="row" fxLayoutAlign="start center">
+      <mat-icon class="list-icons">search</mat-icon>
+      <span class="list-text">Search Book</span>
+    </div>
+    <div #trigger matRipple [matRippleDisabled]='style[3].disabled' [ngStyle]='style[3].style' routerLink="/my-books"
+      (click)='disableMyBooks()' class="w-100 b-r ripple  up-m" fxLayout="row" fxLayoutAlign="start center">
+      <mat-icon class="list-icons">book</mat-icon>
+      <span class="list-text">My Books</span>
+    </div>
+    <div #trigger matRipple [matRippleDisabled]='style[4].disabled' [ngStyle]='style[4].style' routerLink="/profile"
+      (click)='disableProfile()' class="w-100 b-r ripple  up-m" fxLayout="row" fxLayoutAlign="start center">
+      <mat-icon class="list-icons">person</mat-icon>
+      <span class="list-text">Profile</span>
+    </div>
+    <div #trigger matRipple [matRippleDisabled]='style[5].disabled' [ngStyle]='style[5].style' routerLink="/chats"
+      (click)='disableChats()' class="w-100 b-r ripple  up-m" fxLayout="row" fxLayoutAlign="start center">
+      <mat-icon class="list-icons">chat_bubble</mat-icon>
+      <span class="list-text">Chats</span>
+    </div>
+    <div #trigger matRipple [matRippleDisabled]='style[5].disabled' [ngStyle]='style[6].style' routerLink="/notifications"
+      (click)='disableNotifications()' class="w-100 b-r ripple  up-m" fxLayout="row" fxLayoutAlign="start center">
+      <mat-icon class="list-icons">notifications</mat-icon>
+      <span class="list-text">Notifications</span>
+      <div class="circle numNotf" fxLayout="row" fxLayoutAlign="center center">
+        <span class="white num">1</span>
+      </div>
+    </div>
   </div>
   <div fxFlex="10"></div>
 </div>
