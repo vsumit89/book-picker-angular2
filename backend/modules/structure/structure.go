@@ -57,7 +57,7 @@ type BookData struct {
 	Comments *[]Comment `json:"comments" bson:"comments"`
 	Ilink    string     `json:"ilink" bson:"ilink"`
 	Time     int64      `json:"time,omitempty" bson:"addedTime"`
-	Rating   int16      `json:"rating" bson:"rating"`
+	Rating   float32      `json:"rating" bson:"rating"`
 }
 
 
